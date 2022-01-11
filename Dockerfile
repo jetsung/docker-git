@@ -1,8 +1,17 @@
 FROM alpine:latest
 
-RUN apk add git openssh
-
 WORKDIR /app
 
-ENTRYPOINT ["/bin/sh", "-c", "while true; do echo hello world; sleep 360; done"]
+RUN apk add git openssh
+
+RUN printf '#!/bin/sh \n\n \
+if [ "${1}x" = ""x ] ; then \n \
+  /bin/sh \n \
+else \n \
+  exec -- "$@" \n \
+fi \n'\
+> /app/entry.sh ; \
+chmod +x /app/entry.sh
+
+ENTRYPOINT ["/app/entry.sh"]
 
