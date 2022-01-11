@@ -7,8 +7,9 @@ RUN apk add git openssh
 RUN printf '#!/bin/sh \n\n \
 if [ "${1}x" = ""x ] ; then \n \
   /bin/sh \n \
-else \n \
-  exec -- "$@" \n \
+elif \n \
+else [ "${1}x" = "-D"x ] ; then \n \
+  /bin/sh -c "while true; do echo hello world; sleep 360; done" \n \
 fi \n'\
 > /app/entry.sh ; \
 chmod +x /app/entry.sh
