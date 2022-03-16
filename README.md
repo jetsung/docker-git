@@ -18,4 +18,4 @@ docker exec git-alpine git --version
 docker exec -it git-alpine sh
 ```
 
-更多教程请查看 **[WIKI](/wiki)**
+更多教程请查看 **[WIKI](https://github.com/jetsung/docker-git/wiki)**
